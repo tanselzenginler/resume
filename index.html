@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tansel Zenginler – Global Cybersecurity Executive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #09090b;
+    --primary: #09090b;
+    --muted: #71717a;
+    --secondary: #f4f4f5;
+    --border: #e4e4e7;
+    --green: #16a34a;
+    --radius: 2rem;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--fg); font-family: 'Outfit', sans-serif; overflow-x: hidden; line-height: 1.6; }
+
+  /* Progress bar */
+  #progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--fg); width: 0%; z-index: 100; transition: width 0.1s; }
+
+  /* Background blobs */
+  .blob-wrap { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .blob { position: absolute; border-radius: 50%; background: rgba(0,0,0,0.03); filter: blur(120px); animation: pulse 6s ease-in-out infinite; }
+  .blob-1 { width: 50vw; height: 50vw; top: -10%; left: -10%; }
+  .blob-2 { width: 50vw; height: 50vw; bottom: -10%; right: -10%; animation-delay: 2s; }
+  @keyframes pulse { 0%,100% { opacity:.5; } 50% { opacity:1; } }
+
+  .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+
+  /* Hero */
+  .hero { display: flex; flex-direction: column; gap: 3rem; margin-bottom: 6rem; }
+  .hero-top { display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: flex-start; gap: 3rem; flex-wrap: wrap; }
+  .hero-text { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 1.5rem; }
+  .available-badge { display: inline-flex; align-items: center; gap: .5rem; padding: .25rem .75rem; border-radius: 999px; background: var(--secondary); border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: var(--muted); width: fit-content; }
+  .dot-wrap { position: relative; width: 8px; height: 8px; }
+  .dot-ping { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: var(--green); opacity: .75; animation: ping 1.5s ease-in-out infinite; }
+  .dot-core { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  @keyframes ping { 0% { transform: scale(1); opacity:.75; } 100% { transform: scale(2.5); opacity:0; } }
+  h1 { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 700; line-height: .92; letter-spacing: -.04em; color: var(--fg); }
+  h1 span { display: block; }
+  .tagline { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--muted); font-weight: 300; max-width: 480px; }
+  .tagline strong { color: var(--fg); font-weight: 400; }
+  .cta-row { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.75rem; border-radius: 999px; background: var(--fg); color: var(--bg); font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.15); }
+  .social-links { display: flex; gap: 1.5rem; align-items: center; }
+  .social-link { color: var(--muted); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: .8rem; display: flex; align-items: center; gap: .35rem; transition: color .2s; }
+  .social-link:hover { color: var(--fg); }
+  .divider-v { width: 1px; height: 1rem; background: var(--border); }
+
+  /* Profile image */
+  .profile-wrap { position: relative; width: 180px; height: 200px; flex-shrink: 0; }
+  .profile-bg { position: absolute; inset: 0; background: var(--secondary); border-radius: 2.5rem; transform: rotate(6deg); z-index: 0; }
+  .profile-img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 2rem; border: 1px solid var(--border); box-shadow: 0 10px 40px rgba(0,0,0,.1); display: block; }
+
+  /* Perspective section */
+  .perspective { max-width: 1000px; padding-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .label { font-family: 'JetBrains Mono', monospace; font-size: .7rem; text-transform: uppercase; letter-spacing: .3em; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
+  .perspective h3 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.2; color: var(--fg); }
+  .perspective p { font-size: 1.05rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
+  .perspective p strong { color: var(--fg); font-weight: 500; }
+
+  /* Separator */
+  .sep { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+  /* Experience */
+  .section { margin-bottom: 6rem; }
+  .section-head { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: .5rem; }
+  .section-head h3 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.03em; color: var(--fg); }
+  .work-item { display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; margin-bottom: 3rem; }
+  .work-meta { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: var(--muted); line-height: 1.8; }
+  .badges { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+  .badge { padding: .2rem .6rem; border-radius: 4px; background: var(--secondary); border: 1px solid var(--border); font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; font-family: 'JetBrains Mono', monospace; color: var(--muted); }
+  .work-content h4 { font-size: 1.4rem; font-weight: 600; margin-bottom: .25rem; display: flex; align-items: center; gap: .5rem; color: var(--fg); }
+  .work-content h4 .arrow { opacity: 0; transform: translate(-4px,4px); transition: all .2s; font-size: .9rem; }
+  .work-item:hover h4 .arrow { opacity: 1; transform: translate(0,0); }
+  .work-content .role { font-size: 1rem; color: var(--muted); font-weight: 500; margin-bottom: .75rem; }
+  .work-content p { font-size: 1rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
+  .work-sep { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  /* Skills */
+  .skills-section { background: var(--secondary); border: 1px solid var(--border); border-radius: 2rem; padding: 3rem 2.5rem; margin-bottom: 6rem; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+  .skills-info h3 { font-size: 2.5rem; font-weight: 700; letter-spacing: -.03em; margin-bottom: .75rem; color: var(--fg); }
+  .skills-info p { color: var(--muted); font-weight: 300; line-height: 1.7; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .skill-pill { padding: .5rem 1.1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); font-size: .85rem; font-weight: 300; transition: border-color .2s, background .2s; cursor: default; color: var(--fg); }
+  .skill-pill:hover { border-color: var(--fg); background: var(--secondary); }
+
+  /* Education */
+  .edu-card { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border); background: var(--secondary); flex-wrap: wrap; }
+  .edu-card h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: .25rem; color: var(--fg); }
+  .edu-card .degree { color: var(--muted); font-size: 1rem; }
+  .edu-card .desc { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: .75rem; margin-top: .5rem; font-style: italic; opacity: .7; }
+  .edu-card .dates { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: var(--muted); white-space: nowrap; }
+
+  /* Footer */
+  footer { text-align: center; padding: 5rem 0 2rem; position: relative; overflow: hidden; }
+  .footer-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: .03; pointer-events: none; font-size: min(15vw, 120px); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; color: var(--fg); }
+  .footer-content { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 2.5rem; align-items: center; }
+  .footer-content h2 { font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; max-width: 700px; color: var(--fg); }
+  .footer-content p { color: var(--muted); font-weight: 300; font-size: 1.1rem; max-width: 400px; line-height: 1.7; }
+  .footer-ctas { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .btn-outline { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.75rem; border-radius: 999px; border: 1px solid var(--border); color: var(--fg); font-size: 1rem; font-weight: 500; text-decoration: none; font-family: 'Outfit', sans-serif; transition: border-color .2s, background .2s; }
+  .btn-outline:hover { border-color: var(--fg); background: var(--secondary); }
+  .footer-bottom { padding-top: 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: .7rem; text-transform: uppercase; letter-spacing: .15em; color: var(--muted); gap: 1rem; flex-wrap: wrap; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--muted); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--fg); }
+
+  /* Animations */
+  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn .7s ease forwards; }
+  @keyframes fadeIn { to { opacity: 1; transform: none; } }
+  .fade-in:nth-child(1) { animation-delay: .1s; }
+  .fade-in:nth-child(2) { animation-delay: .2s; }
+
+  @media (max-width: 640px) {
+    .hero-top { flex-direction: column-reverse; }
+    .profile-wrap { width: 130px; height: 145px; }
+    .work-item { grid-template-columns: 1fr; gap: 1rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="blob-wrap"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="hero-top fade-in">
+      <div class="hero-text">
+        <div class="available-badge">
+          <div class="dot-wrap"><span class="dot-ping"></span><span class="dot-core"></span></div>
+          Available for new opportunities
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-top fade-in">
+      <div class="profile-wrap">
+        <div class="profile-bg"></div>
+        <img class="profile-img" src="https://tanselzenginler.github.io/portfolio/TanselZenginler.jpg" alt="Tansel Zenginler"></div>
+      <div class="hero-text">
+        <h1><span>Tansel Zenginler</span></h1>
+        <p class="tagline">Global Cybersecurity Executive &amp; Technical Leader<br>
+          <strong>Global cybersecurity and solutions engineering leader driving secure, scalable cloud and SaaS solutions.</strong></p>
+        <div class="social-links">
+          <a class="social-link" href="https://www.linkedin.com/in/tanselzenginler/" target="_blank">⇗ LinkedIn</a>
+          <div class="divider-v"></div>
+          <span class="social-link">📍 Weston, Florida</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="perspective fade-in">
+      <div class="label">⟡ Perspective</div>
+      <h3>Architecting and Securing the Future in an AI-Driven World</h3>
+      <p>AI is transforming cybersecurity and enterprise technology. From threat detection to automated monitoring and decision support, it accelerates insight and scale. I leverage AI extensively to design secure systems, build scalable cloud and SaaS solutions, and optimize global security operations.</p>
+      <p>But leadership in security and system design has never been just about tools or speed. It’s about people, trust, and making the right decisions in complex, high-stakes environments.</p>
+      <p>With 25+ years of experience leading global teams, implementing Zero Trust architectures, and delivering secure cloud, API, and enterprise solutions, I’ve learned that true impact comes from guiding organizations and teams through challenging technical and strategic choices.</p>
+      <p><strong>Technology enables security and design, but trust and human judgment drive it. The best programs aren’t just built—they’re earned through collaboration, expertise, and leadership. That’s where I make a difference.</strong></p>
+    </div>
+  </section>
+
+  <hr class="sep">
+
+  <section class="section">
+    <div class="section-head">
+      <div class="label">✦ Career Path</div>
+      <h3>Professional Experience</h3>
+    </div>
+
+    <div class="work-item">
+      <div class="work-meta">Oct 2021 — Dec 2025<div class="badges"><span class="badge">Worldwide</span><span class="badge">Executive</span></div></div>
+      <div class="work-content">
+        <h4>IBM <span class="arrow">↗</span></h4>
+        <div class="role">Worldwide Technical Executive – AI and Data Security</div>
+        <p>Provided worldwide leadership for AI and Data Security portfolio, combining deep hands-on architecture expertise with global technical sales and large-scale enablement. Served as a trusted advisor to clients, partners, and IBM leadership, driving secure data and AI transformations, accelerating revenue growth, and establishing globally scalable technical excellence.</p>
+      </div>
+    </div>
+    <hr class="work-sep">
+
+    <div class="work-item">
+      <div class="work-meta">Aug 2010 — Oct 2021<div class="badges"><span class="badge">Worldwide</span><span class="badge">Leadership</span></div></div>
+      <div class="work-content">
+        <h4>IBM <span class="arrow">↗</span></h4>
+        <div class="role">Worldwide Solution Architect  Leader – Data Security</div>
+        <p>Spearheaded worldwide technical architect organization for IBM’s Data Security portfolio, serving as a trusted advisor to enterprise clients, partners, and IBM stakeholders. Led complex security transformation initiatives, shaped enterprise data protection architectures, and drove adoption of IBM security solutions through deep technical engagement.</p>
+      </div>
+    </div>
+    <hr class="work-sep">
+
+    <div class="work-item">
+      <div class="work-meta">Apr 2013 — Dec 2025<div class="badges"><span class="badge">Worldwide</span><span class="badge">Leadership</span><span class="badge">Distinguished Technical Specialist</span></div></div>
+      <div class="work-content">
+        <h4>IBM <span class="arrow">↗</span></h4>
+        <div class="role">Worldwide Profession Leader – Technical Specialist Profession</div>
+        <p>Represented 85,000+ IBMers globally. Led a council of 50 thought leaders, increased global certification adoption, chaired 250+ certification boards, mentored senior technologists, and was recognized annually as an IBM Profession Champion.</p>
+      </div>
+    </div>
+    <hr class="work-sep">
+
+    <div class="work-item">
+      <div class="work-meta">Dec 2008 — Aug 2010<div class="badges"><span class="badge">Turkey</span></div></div>
+      <div class="work-content">
+        <h4>IBM <span class="arrow">↗</span></h4>
+        <div class="role">Enterprise Architect</div>
+        <p>Propelled sales growth by consistently overachieving targets annually through expert pre-sales demonstrations, implementations, and technical support of IBM Tivoli products.</p>
+      </div>
+    </div>
+    <hr class="work-sep">
+
+    <div class="work-item">
+      <div class="work-meta">Dec 2007 — Dec 2008<div class="badges"><span class="badge">Turkey</span></div></div>
+      <div class="work-content">
+        <h4>Coast Guard <span class="arrow">↗</span></h4>
+        <div class="role">IT Officer</div>
+        <p>Led the IT operations of the Coast Guard while managing the Network Systems Renewal Project, successfully modernizing the IT infrastructure and driving improvements in performance, scalability, and reliability.</p>
+      </div>
+    </div>
+    <hr class="work-sep">
+
+    <div class="work-item">
+      <div class="work-meta">Aug 2003 — Dec 2007<div class="badges"><span class="badge">Turkey</span></div></div>
+      <div class="work-content">
+        <h4>Beko Electronics <span class="arrow">↗</span></h4>
+        <div class="role">Information Security, System and Database Manager</div>
+        <p>Spearheaded the management of enterprise IT infrastructure, including IBM storage, Power systems, and VMware, ensuring high levels of scalability, security, and performance. Led the implementation and administration of databases and SAP systems supporting international operations, while driving the ISO 27001 security initiative by establishing policies and governance frameworks. Additionally, developed web and client applications using ASP.NET, VB.NET, and C#, including the award-winning “Marduk” project, which was later sold for $2M.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="skills-section">
+    <div class="skills-grid">
+      <div class="skills-info">
+        <div class="label" style="margin-bottom:.75rem">⟡ Expertise</div>
+        <h3>Core Skills</h3>
+        <p>Over two decades of experience leading and scaling technical organizations in complex environments.</p>
+      </div>
+      <div class="skills-list">
+        <span class="skill-pill">Team Management</span><span class="skill-pill">Cybersecurity</span><span class="skill-pill">Artificial Intelligence (AI)</span><span class="skill-pill">Technical Sales</span><span class="skill-pill">Technical Enablement</span><span class="skill-pill">Data Security</span><span class="skill-pill">Solution Architecture</span><span class="skill-pill">Cloud Computing</span><span class="skill-pill">Technical Consulting</span><span class="skill-pill">Global Team Building &amp; Leadership</span><span class="skill-pill">Strategic Planning</span><span class="skill-pill">Project Management</span><span class="skill-pill">Technical Recruiting</span><span class="skill-pill">Global Management Strategy</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="label">✦ Foundation</div>
+      <h3>Education</h3>
+    </div>
+    <div class="edu-card">
+      <div>
+        <h4>Bogazici University</h4>
+        <div class="degree">Master of Science in Computer Engineering</div>
+        <div class="desc">Master Thesis: Data Security</div>
+      </div>
+      <div class="dates">2004 — 2007</div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <h4>Bogazici University</h4>
+        <div class="degree">Bachelor of Science in Computer Engineering</div>
+        <div class="desc">Graduation Project: Artificial Intellince</div>
+      </div>
+      <div class="dates">1998 — 2003</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-bg">ZENGINLER</div>
+    <div class="footer-content">
+      <h2>Building and securing the future of enterprise technology at scale.</h2>
+      <p>Seeking an executive to drive cloud architecture, cybersecurity, and scalable transformation? Let’s start a conversation.</p>
+      <div class="footer-ctas">
+        <a class="btn-outline" href="https://www.linkedin.com/in/tanselzenginler/" target="_blank">LinkedIn ↗</a>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Tansel Zenginler</span>
+        <div class="footer-links">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    document.getElementById('progress').style.width = (pct * 100) + '%';
+  });
+</script>
+</body>
+</html>
