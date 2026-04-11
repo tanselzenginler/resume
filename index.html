@@ -84,6 +84,17 @@
   .work-content .role { font-size: 1rem; color: var(--muted); font-weight: 500; margin-bottom: .75rem; }
   .work-content p { font-size: 1rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
   .work-sep { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .work-content ul {
+    margin-top: .75rem;
+    padding-left: 1.2rem;
+    color: var(--muted);
+  }
+
+  .work-content li {
+    margin-bottom: .5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
 
   /* Skills */
   .skills-section { background: var(--secondary); border: 1px solid var(--border); border-radius: 2rem; padding: 3rem 2.5rem; margin-bottom: 6rem; }
@@ -128,8 +139,78 @@
     .skills-grid { grid-template-columns: 1fr; }
     h1 { font-size: 3rem; }
   }
+
+  .more-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: max-height 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .more-content.open {
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: .75rem;
+  }
+
+  .read-more,
+  .read-less {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--fg);
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .read-more:hover,
+  .read-less:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const allContents = document.querySelectorAll('.more-content');
+
+  function closeAll() {
+    allContents.forEach(content => {
+      content.style.maxHeight = null;
+      content.classList.remove('open');
+      const parent = content.closest('.work-content');
+      parent.querySelector('.read-more').style.display = 'inline';
+    });
+  }
+
+  document.querySelectorAll('.read-more').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const parent = this.closest('.work-content');
+      const content = parent.querySelector('.more-content');
+
+      closeAll();
+
+      content.classList.add('open');
+      content.style.maxHeight = content.scrollHeight + "px";
+
+      this.style.display = 'none';
+    });
+  });
+
+  document.querySelectorAll('.read-less').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const parent = this.closest('.work-content');
+      const content = parent.querySelector('.more-content');
+
+      content.style.maxHeight = null;
+      content.classList.remove('open');
+
+      parent.querySelector('.read-more').style.display = 'inline';
+    });
+  });
+});
+</script>
 <body>
 <div id="progress"></div>
 <div class="blob-wrap"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
@@ -185,8 +266,28 @@
       <div class="work-content">
         <h4>IBM</h4>
         <div class="role">Worldwide Technical Executive – AI and Data Security</div>
-        <p>Provided worldwide leadership for AI and Data Security portfolio, combining deep hands-on architecture expertise with global technical sales and large-scale enablement. Served as a trusted advisor to clients, partners, and IBM leadership, driving secure data and AI transformations, accelerating revenue growth, and establishing globally scalable technical excellence.</p>
-      </div>
+        <p class="preview">
+          Provided worldwide leadership for AI and Data Security portfolio, combining deep hands-on architecture expertise with global technical sales and large-scale enablement. Served as a trusted advisor to clients, partners, and IBM leadership, driving secure data and AI transformations, accelerating revenue growth, and establishing globally scalable technical excellence.
+          <button class="read-more">Read more...</button>
+        </p>
+
+        <div class="more-content">
+        <p>
+          <ul>
+            <li>Owned global strategy for <strong>AI and Data Security</strong>, partnering with <strong>Sales, Engineering, Product and Marketing</strong> leadership teams to drive pipeline growth, accelerate deal cycles, and increase win rates across strategic enterprise accounts.</li>
+            <li>Acted as <strong>senior advisor</strong> in complex sales engagements, leading executive discussions, handling objections, and shaping solutions aligned with customer priorities.</li>
+            <li>Collaborated with <strong>VP-level</strong> stakeholders in Sales, Product, and Engineering to influence GTM strategy, align offerings, and support revenue targets.</li>
+            <li>Delivered <strong>executive briefings</strong>, <strong>workshops</strong>, and <strong>global events</strong> with consistently exceptional feedback, including <strong>100% five-star ratings</strong> in 2025.</li>
+            <li><strong>Recruited, mentored, and led</strong> global Sales Engineering leaders, managers, and senior technical contributors, building scalable teams across regions.</li>
+            <li>Championed <strong>worldwide enablement</strong>, ensuring consistent excellence across IBMers, partners, and clients.</li>
+            <li>Designed advanced technical courses, hands-on labs, and frameworks in AI security, data protection, governance, and compliance.</li>
+            <li><strong>Mentored technical leaders</strong> worldwide, fostering collaboration, knowledge sharing, and continuous learning.</li>
+            <li>Consistently earned <strong>“Exceptional” performance ratings</strong> and recognized as a strong candidate for <strong>IBM’s Distinguished Engineer</strong> role.</li>
+          </ul>        
+        </p>
+        <button class="read-less">Read less</button>
+        </div>
+      </div>      
     </div>
     <hr class="work-sep">
 
