@@ -169,6 +169,22 @@
   .read-less:hover {
     text-decoration: underline;
   }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+
+  .row .degree {
+    max-width: 75%;
+  }
+
+  .row .dates {
+    white-space: nowrap;
+    margin-left: 15px;
+  }
 </style>
 </head>
 <script>
@@ -383,24 +399,33 @@ document.addEventListener('DOMContentLoaded', () => {
       <h3>Patents  &amp; Publications</h3>
     </div>
     <div class="edu-card">
-      <div>
-        <h4>Patent Applications</h4>
-        <div class="degree">Ranking Action Sets Comprised of Actions for an Event to Optimize Action Set Selection (US P201900779US01)</div>
-        <div class="degree">System and method to identify fraud using IoT </div><div class="desc">(US IPCOM000259554D)</div>
-        <div class="degree">Smart Mapping for Standard Based Messages </div><div class="desc">(US IPCOM000263276D)</div>
-        <div class="degree">Smart Notification Using Special Tagging in Group Communication </div><div class="desc">(US IPCOM000264211D)</div>
+  <div>
+    <h4>Patent Applications</h4>
+
+    <div class="row">
+      <div class="degree">
+        Ranking Action Sets Comprised of Actions for an Event to Optimize Action Set Selection
       </div>
+      <div class="dates">(US P201900779US01)</div>
     </div>
-    <br>
-    <div class="edu-card">
-      <div>
-        <h4>Bachelor of Science in Computer Engineering</h4>
-        <div class="degree">Bogazici University, Turkey</div>
-        <div class="desc">Graduation Project: Artificial Intellince</div>
-      </div>
-      <div class="dates">1998 — 2003</div>
+
+    <div class="row">
+      <div class="degree">System and method to identify fraud using IoT</div>
+      <div class="dates">(US IPCOM000259554D)</div>
     </div>
-  </section>
+
+    <div class="row">
+      <div class="degree">Smart Mapping for Standard Based Messages</div>
+      <div class="dates">(US IPCOM000263276D)</div>
+    </div>
+
+    <div class="row">
+      <div class="degree">Smart Notification Using Special Tagging in Group Communication</div>
+      <div class="dates">(US IPCOM000264211D)</div>
+    </div>
+
+  </div>
+</div>
 
   <footer>
     <div class="footer-bg">ZENGINLER</div>
