@@ -173,7 +173,7 @@
   /* Patents and Publications */
   .pub-card { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border); background: var(--secondary); flex-wrap: wrap; flex-direction: column;}
   .pub-card h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: .25rem; color: var(--fg); }
-  .pub-card .name { color: var(--muted); font-size: 1rem; flex: 1;}
+  .pub-card .name { flex: 1; color: var(--muted); font-size: 1rem; }
   .pub-card .details { font-family: 'JetBrains Mono', monospace; text-align: right; font-size: .75rem; color: var(--muted); white-space: nowrap; }
 </style>
 </head>
@@ -401,12 +401,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="details">Granted</div>
       </div>
 
-      <div class="row">
+      <div>
         <div class="name">Smart Mapping for Standard Based Messages (US IPCOM000263276D)</div>
         <div class="details">Granted</div>
       </div>
 
-      <div class="row">
+      <div>
         <div class="name">Smart Notification Using Special Tagging in Group Communication (US IPCOM000264211D)</div>
         <div class="details">Published</div>
       </div>
@@ -416,12 +416,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="pub-card">
       <h4>Publications</h4>
       
-      <div class="row">
+      <div>
         <div class="name">Use data-level security for granular access control of auditing results in Guardium</div>
         <div class="details">IBM</div>
       </div>
 
-      <div class="row">
+      <div>
         <div class="name">Secure Skyline Querying</div>
         <div class="details">Bogazici University</div>
       </div>
