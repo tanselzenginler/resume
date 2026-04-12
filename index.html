@@ -171,10 +171,11 @@
   }
 
   /* Patents and Publications */
-  .pub-card { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border); background: var(--secondary); flex-wrap: wrap; flex-direction: column;}
-  .pub-card h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: .25rem; color: var(--fg); }
-  .pub-card .name { flex: 1; color: var(--muted); font-size: 1rem; }
-  .pub-card .details { font-family: 'JetBrains Mono', monospace; text-align: right; font-size: .75rem; color: var(--muted); white-space: nowrap; }
+  .pub-card { justify-content: space-between; align-items: flex-start; gap: 1.5rem; padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--border); background: var(--secondary); }
+  .pub-card h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--fg); }
+  .pub-card .row { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; width: 100%;}
+  .pub-card .col-left { color: var(--muted); font-size: 1rem; flex: 1; min-width: 0; }
+  .pub-card .col-right { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: var(--muted); white-space: nowrap; width: 120px; flex-shrink: 0; margin-left: auto; }
 </style>
 </head>
 <script>
@@ -389,26 +390,26 @@ document.addEventListener('DOMContentLoaded', () => {
       <h3>Patents  &amp; Publications</h3>
     </div>
     <div class="pub-card">
-      <h4>Patents</h4>
+      <h4>Patent Applications</h4>
 
-      <div>
-        <div class="name">Ranking Action Sets Comprised of Actions for an Event to Optimize Action Set Selection (US P201900779US01)</div>
-        <div class="details">Granted</div>
+      <div class="row">
+        <div class="col-left">Ranking Action Sets Comprised of Actions for an Event to Optimize Action Set Selection</div>
+        <div class="col-right">(US P201900779US01)</div>
       </div>
 
-      <div>
-        <div class="name">System and method to identify fraud using IoT (US IPCOM000259554D)</div>
-        <div class="details">Granted</div>
+      <div class="row">
+        <div class="col-left">System and method to identify fraud using IoT</div>
+        <div class="col-right">(US IPCOM000259554D)</div>
       </div>
 
-      <div>
-        <div class="name">Smart Mapping for Standard Based Messages (US IPCOM000263276D)</div>
-        <div class="details">Granted</div>
+      <div class="row">
+        <div class="col-left">Smart Mapping for Standard Based Messages</div>
+        <div class="col-right">(US IPCOM000263276D)</div>
       </div>
 
-      <div>
-        <div class="name">Smart Notification Using Special Tagging in Group Communication (US IPCOM000264211D)</div>
-        <div class="details">Published</div>
+      <div class="row">
+        <div class="col-left">Smart Notification Using Special Tagging in Group Communication</div>
+        <div class="col-right">(US IPCOM000264211D)</div>
       </div>
 
     </div>
@@ -416,17 +417,42 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="pub-card">
       <h4>Publications</h4>
       
-      <div>
-        <div class="name">Use data-level security for granular access control of auditing results in Guardium</div>
-        <div class="details">IBM</div>
+      <div class="row">
+        <div class="col-left">Use data-level security for granular access control of auditing results in Guardium</div>
+        <div class="col-right">IBM</div>
       </div>
 
-      <div>
-        <div class="name">Secure Skyline Querying</div>
-        <div class="details">Bogazici University</div>
+      <div class="row">
+        <div class="col-left">Secure Skyline Querying</div>
+        <div class="col-right">Bogazici University</div>
+      </div>
+    </div>
+  <br>
+    <div class="pub-card">
+      <h4>Exams Written</h4>
+      
+      <div class="row">
+        <div class="col-left">IBM Security Guardium Administrator</div>
+        <div class="col-right">IBM</div>
+      </div>
+
+      <div class="row">
+        <div class="col-left">IBM Cloud Security Engineer Speciality</div>
+        <div class="col-right">IBM</div>
+      </div>
+
+       <div class="row">
+        <div class="col-left">IBM Cloud Advanced Architect</div>
+        <div class="col-right">IBM</div>
+      </div>
+
+      <div class="row">
+        <div class="col-left">IBM Cloud Associate SRE</div>
+        <div class="col-right">IBM</div>
       </div>
     </div>
   </section>
+
 
   <footer>
     <div class="footer-bg">ZENGINLER</div>
